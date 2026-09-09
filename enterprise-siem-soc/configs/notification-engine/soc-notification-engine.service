@@ -1,0 +1,15 @@
+[Unit]
+Description=SOC Notification Engine
+After=network.target
+
+[Service]
+User=soc-alerting
+Group=soc-alerting
+WorkingDirectory=/opt/soc-notification-engine
+ExecStart=/opt/soc-notification-engine/venv/bin/gunicorn -w 2 -b 0.0.0.0:8090 app:app
+Restart=on-failure
+RestartSec=5
+EnvironmentFile=/opt/soc-notification-engine/config/smtp.env
+
+[Install]
+WantedBy=multi-user.target

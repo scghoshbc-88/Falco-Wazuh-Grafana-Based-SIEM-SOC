@@ -1,0 +1,26 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /var/lib/promtail/positions.yaml
+
+clients:
+  - url: http://localhost:3100/loki/api/v1/push
+
+scrape_configs:
+  - job_name: palo-alto
+    static_configs:
+      - targets: [localhost]
+        labels:
+          job: firewall
+          source: palo-alto
+          __path__: /var/log/paloalto/*.log
+
+  - job_name: unifi
+    static_configs:
+      - targets: [localhost]
+        labels:
+          job: wireless
+          source: unifi
+          __path__: /var/log/unifi/*.log

@@ -1,0 +1,43 @@
+version: "3.9"
+
+# Pin explicit versions before production use — "latest" is fine for the lab
+# build-out only.
+
+services:
+  grafana:
+    image: grafana/grafana:11.1.0
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - /opt/siem-stack/grafana:/var/lib/grafana
+    environment:
+      - GF_SERVER_ROOT_URL=https://<GRAFANA_HOST>/
+      - GF_SECURITY_ADMIN_PASSWORD__FILE=/run/secrets/grafana_admin_password
+    secrets:
+      - grafana_admin_password
+
+  loki:
+    image: grafana/loki:3.1.0
+    container_name: loki
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    volumes:
+      - /opt/siem-stack/loki:/loki
+      - ./loki-config.yaml:/etc/loki/local-config.yaml:ro
+    command: -config.file=/etc/loki/local-config.yaml
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    volumes:
+      - /opt/siem-stack/influxdb:/var/lib/influxdb2
+
+secrets:
+  grafana_admin_password:
+    file: ./secrets/grafana_admin_password.txt   # chmod 600, never committed

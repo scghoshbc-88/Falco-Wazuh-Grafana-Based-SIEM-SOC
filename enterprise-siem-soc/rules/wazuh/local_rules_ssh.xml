@@ -1,0 +1,36 @@
+<!-- SSH activity detections — rules 100700-100703
+     Backup and validate before applying: see docs/03-wazuh-core §3.5 -->
+
+<group name="local,syslog,sshd,">
+
+  <rule id="100700" level="3">
+    <if_sid>5715</if_sid>
+    <description>SSH login successful.</description>
+    <group>authentication_success,</group>
+  </rule>
+
+  <rule id="100701" level="8">
+    <if_sid>5716</if_sid>
+    <description>SSH login failure.</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>authentication_failed,</group>
+  </rule>
+
+  <rule id="100702" level="12" frequency="5" timeframe="120">
+    <if_matched_sid>100701</if_matched_sid>
+    <description>Multiple SSH authentication failures - possible brute force.</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>authentication_failures,</group>
+  </rule>
+
+  <rule id="100703" level="6">
+    <if_sid>100700</if_sid>
+    <description>SSH login from source outside expected management subnet.</description>
+    <group>authentication_success,</group>
+  </rule>
+
+</group>

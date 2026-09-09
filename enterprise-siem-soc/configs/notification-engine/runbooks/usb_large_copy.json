@@ -1,0 +1,22 @@
+{
+  "title": "USB Data Transfer Detected",
+  "mitre": {
+    "technique": "Exfiltration Over Physical Medium",
+    "technique_id": "T1052.001",
+    "tactic": "Exfiltration"
+  },
+  "investigation_checklist": [
+    "Confirm business justification with the user.",
+    "Identify the removable-media device, manufacturer and ownership.",
+    "Review files copied and total transfer volume.",
+    "Correlate Wazuh FIM and Sysmon endpoint telemetry.",
+    "Review Microsoft Defender device timeline.",
+    "Determine whether sensitive business data was transferred.",
+    "Escalate if the transfer was unauthorized."
+  ],
+  "response": {
+    "immediate": "Isolate the endpoint from the network if unauthorized transfer of sensitive data is suspected. Preserve the removable-media device if physically available.",
+    "short_term": "Interview the user; determine business justification; check DLP/FIM logs for the specific files involved.",
+    "long_term": "Review whether USB write access should be restricted for this user/device group; update policy if this was a repeated or high-risk pattern."
+  }
+}
