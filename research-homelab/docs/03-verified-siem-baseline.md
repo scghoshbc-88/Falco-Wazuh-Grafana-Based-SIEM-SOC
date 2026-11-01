@@ -67,3 +67,19 @@ Dashboard verification: **Endpoints** for agent status; **Threat Hunting → Eve
 Run a **safe, timestamped, reproducible authentication-event test** on Machine B; record ground truth and matching manager/indexed alerts; then specify a baseline event-reconstruction protocol before introducing Falco or provenance instrumentation.
 
 See [network architecture](01-network-architecture.md) and [SME reference architecture](00-sme-reference-architecture.md).
+
+
+## Screenshot evidence package (prepared; upload pending)
+
+Four sanitized PNG screenshots were prepared from the October 31 validation session. **The binary images are not yet stored in this GitHub branch**; this section is an inventory and publication checklist, not a claim that the image files are already accessible here.
+
+| Intended repository path | Demonstrates | Important limitation |
+|---|---|---|
+| `evidence/01-wazuh-agents-active.png` | Two active Wazuh agents and versions | Agent status does not prove event completeness |
+| `evidence/02-machine-a-security-alerts.png` | Indexed sudo/PAM events from Machine A | Alerts do not establish a complete causal chain |
+| `evidence/03-machine-b-security-alerts.png` | Indexed USB storage alert from Machine B | An alert is not independent verification of physical USB activity |
+| `evidence/04-wazuh-services-active.png` | Manager, indexer, dashboard, and agent listing | Service activity does not prove performance or resilience |
+
+**Publication rule:** Upload only reviewed sanitized copies; preserve original screenshots privately. Do not publish browser addresses, private network addresses, secrets, personal identifiers, or employer-specific telemetry. If a screenshot is redacted, describe the redaction without implying that it is an unaltered capture.
+
+**Evidence status:** Service and event observations verified from original captures; image publication pending manual binary upload.
