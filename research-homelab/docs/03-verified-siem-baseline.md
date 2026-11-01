@@ -69,9 +69,9 @@ Run a **safe, timestamped, reproducible authentication-event test** on Machine B
 See [network architecture](01-network-architecture.md) and [SME reference architecture](00-sme-reference-architecture.md).
 
 
-## Screenshot evidence package (prepared; upload pending)
+## Screenshot evidence (published October 31, 2026)
 
-Four sanitized PNG screenshots were prepared from the October 31 validation session. **The binary images are not yet stored in this GitHub branch**; this section is an inventory and publication checklist, not a claim that the image files are already accessible here.
+Four sanitized PNG screenshots from the October 31 validation session were uploaded to this research branch in commit `4a9f628`.
 
 | Intended repository path | Demonstrates | Important limitation |
 |---|---|---|
@@ -80,6 +80,26 @@ Four sanitized PNG screenshots were prepared from the October 31 validation sess
 | `evidence/03-machine-b-security-alerts.png` | Indexed USB storage alert from Machine B | An alert is not independent verification of physical USB activity |
 | `evidence/04-wazuh-services-active.png` | Manager, indexer, dashboard, and agent listing | Service activity does not prove performance or resilience |
 
-**Publication rule:** Upload only reviewed sanitized copies; preserve original screenshots privately. Do not publish browser addresses, private network addresses, secrets, personal identifiers, or employer-specific telemetry. If a screenshot is redacted, describe the redaction without implying that it is an unaltered capture.
+**Publication rule:** Preserve original screenshots privately; review published images for inadvertent disclosures. Do not publish browser addresses, private network addresses, secrets, personal identifiers, or employer-specific telemetry. If a screenshot is redacted, describe the redaction without implying that it is an unaltered capture.
 
-**Evidence status:** Service and event observations verified from original captures; image publication pending manual binary upload.
+**Evidence status:** Service and event observations verified from original captures; four sanitized screenshots published.
+
+## Visual evidence
+
+### Active agents
+
+![Wazuh endpoint overview showing two active Linux agents](evidence/01-wazuh-agents-active.png)
+
+### Machine A authentication alerts
+
+![Wazuh indexed authentication, sudo and PAM events from Machine A](evidence/02-machine-a-security-alerts.png)
+
+### Machine B USB alert
+
+![Wazuh indexed USB attachment alert from Machine B](evidence/03-machine-b-security-alerts.png)
+
+### Core service and agent health
+
+![Terminal showing active Wazuh services and agent manager listing](evidence/04-wazuh-services-active.png)
+
+Screenshots illustrate the observations above, not completeness of telemetry or provenance-based causal reconstruction.
