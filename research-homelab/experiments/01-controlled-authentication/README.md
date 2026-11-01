@@ -37,3 +37,15 @@ Reproduction should use a unique run ID, capture timestamps with time-zone offse
 ## Next checkpoint
 
 Perform a single timestamped, harmless command on Machine B that reliably creates a journaled sudo session; inspect the local journal and the indexed Wazuh event, and record a unique run ID and matching fields. Do not infer provenance edges from SIEM alerts alone.
+
+## Follow-up: uniquely identified sudo test — verified
+
+**Run ID:** `SOCEXP01-20261031-235541` (31 October 2026, 23:55:41 UTC-07:00).
+
+On Machine B, the operator executed `sudo /usr/bin/logger -t SOC-EXP01 "$RUN_ID controlled sudo test"`. The local journal recorded the sudo command under PID **62218**, a tagged logger message under PID **62221**, and sudo session-open/session-close entries. The exact run ID appeared in both the source journal and the Wazuh alert.
+
+Wazuh Threat Hunting, filtered to agent `ubuntusg` (ID 002), displayed rule **5402** (`Successful sudo to ROOT executed`) for the original logger command. Its expanded event contains `data.command` with `/usr/bin/logger -t SOC-EXP01 SOCEXP01-20261031-235541 controlled sudo test` and `full_log` identifying `sudo[62218]`, with source log time `Nov 01 06:55:41` (UTC, corresponding to local 23:55:41). The event is marked as collected from `journald`. Rules **5501** and **5502** for PAM session open/close were also visible in the surrounding period. A later separate sudo invocation of `journalctl` (PID **62237**) produced additional alerts and is not conflated with the controlled test.
+
+**Conclusion:** Exact command-level traceability from a controlled operator action to a local journal record and an indexed Wazuh rule-5402 alert is **verified** for this run. This demonstrates conventional SIEM collection and alerting, **not** causal provenance graph reconstruction. The tagged logger message's independent appearance as a Wazuh alert was not verified.
+
+**Evidence:** Operator terminal screenshot showing the run ID and journal records, plus a Wazuh expanded event screenshot showing matching command, run ID, and PID. Before publishing screenshot binaries, sanitize private IP addresses, browser URLs, and unrelated host details.
