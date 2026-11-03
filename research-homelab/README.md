@@ -46,3 +46,12 @@ The baseline above is based on recorded setup and troubleshooting sessions. Repr
 **Phase 1 — SIEM baseline established; evidence curation and controlled experiments in progress.**
 
 This research directory is a work in progress, not a claim of a completed doctoral research contribution.
+
+## Completed experiment records (November 2026)
+
+- [Experiment 01 — Controlled Wazuh authentication telemetry](experiments/01-controlled-authentication/README.md)
+- [Experiment 02A — Falco runtime detection](experiments/02-falco-runtime/README.md)
+- [Experiment 02B — Falco JSON to Wazuh custom alert](experiments/02b-falco-wazuh-ingestion/README.md)
+- [Experiment 03 — Linux Audit partial provenance reconstruction](experiments/03-linux-audit-provenance/README.md)
+
+These are controlled feasibility demonstrations, not a complete PIDS or a measured comparison of detection accuracy. Raw source evidence remains private unless separately sanitized and published. The earlier baseline and planned-experiments sections describe the original project plan and should not be interpreted as the current experiment status.
