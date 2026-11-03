@@ -2,7 +2,7 @@
 
 **Branch:** `research-homelab`  
 **Experiment:** `SOCEXP03F-20261103-000558`  
-**Status:** Controlled execution and local graph validation completed; public figure binaries and scripts pending upload.
+**Status:** Controlled execution and local graph validation completed; sanitized Python scripts, DOT source, and an accessible SVG figure published. The original PNG is retained locally and is not uploaded.
 
 ## Purpose
 
@@ -21,12 +21,13 @@ The observed file-open operations alone do not establish bytes transferred, cont
 
 ## Planned public artifacts
 
-- `scripts/audit_parser.py` — audit-event parser, once uploaded and reviewed.
-- `scripts/build_graph.py` — generator with event and access-mode validation, once uploaded and reviewed.
-- `figures/provenance-03f-public.dot` — sanitized Graphviz source, once uploaded.
-- `figures/provenance-03f-public.png` — rendered figure, once uploaded.
+- [`scripts/audit_parser.py`](scripts/audit_parser.py) — audit-event parser (published).
+- [`scripts/build_graph.py`](scripts/build_graph.py) — generator with event and access-mode validation (published).
+- [`figures/provenance-03f-public.dot`](figures/provenance-03f-public.dot) — sanitized Graphviz source (published).
+- [`figures/provenance-03f-public.svg`](figures/provenance-03f-public.svg) — accessible sanitized vector illustration (published; equivalent relationships, redrawn for readability).
+- `figures/provenance-03f-public.png` — original rendered PNG (verified locally; **not uploaded**).
 
-**These files are not implied to exist in GitHub merely because they are listed here.** The original `ausearch --raw` records, local manifest, `SHA256SUMS.txt`, original figures, and backup scripts remain outside the public repository.
+The linked files above have been committed to GitHub. The original `ausearch --raw` records, local manifest, `SHA256SUMS.txt`, original figures, and backup scripts remain outside the public repository.
 
 ## Local verification already performed
 
@@ -49,10 +50,16 @@ python3 scripts/build_graph.py /path/to/private/evidence/03f figures/provenance-
 dot -Tpng figures/provenance-03f-public.dot -o figures/provenance-03f-public.png
 ```
 
-The published generator must be inspected for hardcoded home directories or environment-specific assumptions. The published figure is sanitized and therefore does not itself contain the underlying audit serials, PIDs, inode identifiers, or host identity.
+The published generator uses explicit input/output arguments; the private evidence exports are not published. The published figure is sanitized and therefore does not itself contain the underlying audit serials, PIDs, inode identifiers, or host identity.
 
 ## Limitations
 
 This experiment uses a deliberately benign and known scenario. It does not measure intrusion-detection precision/recall, resilience to telemetry loss, graph completeness, analyst effort, or causal information flow. A stronger study would collect process-creation events and correlate stable process identities and actual read/write observations while explicitly quantifying missing telemetry.
 
 See the parent [Experiment 03 README](../README.md), [methodology](../methodology.md), and [results](../results.md) for the broader experimental record.
+
+## Public illustration
+
+![Sanitized Experiment 03F process and file-open relationships](figures/provenance-03f-public.svg)
+
+The SVG is a clean, accessibility-oriented redraw of the relationships represented in the locally generated DOT/PNG; it is **not** the byte-identical Graphviz PNG.
