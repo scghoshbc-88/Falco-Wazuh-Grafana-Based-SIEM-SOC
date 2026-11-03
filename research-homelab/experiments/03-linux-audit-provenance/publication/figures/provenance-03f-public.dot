@@ -1,0 +1,28 @@
+digraph Experiment03F {
+    rankdir=TB;
+    nodesep=0.9;
+    ranksep=1.1;
+    graph [
+        label="Experiment 03F - Audit-supported process/file relationships",
+        labelloc=t,
+        fontsize=16
+    ];
+    node [shape=box, style=rounded];
+
+    parent [label="Python parent process"];
+    child [label="Python child process"];
+    source [label="Controlled source file"];
+    destination [label="Controlled destination file"];
+
+    parent -> child [
+        label="Observed PPID association / execve"
+    ];
+
+    source -> child [
+        label="Successful read-only openat"
+    ];
+
+    child -> destination [
+        label="Successful write-only openat / O_TRUNC"
+    ];
+}
