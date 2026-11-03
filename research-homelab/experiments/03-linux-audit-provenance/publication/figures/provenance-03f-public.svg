@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" role="img" aria-labelledby="title desc">
+<title id="title">Experiment 03F audit-supported process and file relationships</title>
+<desc id="desc">A Python parent has an observed PPID association with a Python child. A controlled source file was opened read-only by the child; a controlled destination file was opened write-only with truncation. These are observed system calls, not proof of data flow.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#263445"/></marker></defs>
+<rect width="900" height="440" fill="#ffffff"/>
+<text x="450" y="35" font-family="Arial,sans-serif" font-size="20" text-anchor="middle" fill="#182638">Experiment 03F — Audit-supported process/file relationships</text>
+<g fill="#f6f9fc" stroke="#263445" stroke-width="2">
+<rect x="50" y="70" width="270" height="56" rx="12"/>
+<rect x="580" y="70" width="270" height="56" rx="12"/>
+<rect x="330" y="226" width="240" height="56" rx="12"/>
+<rect x="320" y="355" width="260" height="56" rx="12"/>
+</g>
+<g fill="#182638" font-family="Arial,sans-serif" font-size="17" text-anchor="middle">
+<text x="185" y="104">Python parent process</text>
+<text x="715" y="104">Controlled source file</text>
+<text x="450" y="260">Python child process</text>
+<text x="450" y="389">Controlled destination file</text>
+</g>
+<g fill="none" stroke="#263445" stroke-width="2" marker-end="url(#arrow)">
+<path d="M185 126 L185 183 L346 226"/>
+<path d="M715 126 L715 183 L554 226"/>
+<path d="M450 282 L450 355"/>
+</g>
+<g font-family="Arial,sans-serif" font-size="14" text-anchor="middle" fill="#263445">
+<text x="220" y="164">Observed PPID association</text>
+<text x="220" y="181">and execve</text>
+<text x="681" y="164">Successful read-only</text>
+<text x="681" y="181">openat</text>
+<text x="620" y="315">Successful write-only openat</text>
+<text x="620" y="333">with O_TRUNC</text>
+</g>
+<text x="450" y="432" font-family="Arial,sans-serif" font-size="12" text-anchor="middle" fill="#526477">Partial reconstruction: file-open events do not prove data transfer or complete causality.</text>
+</svg>
