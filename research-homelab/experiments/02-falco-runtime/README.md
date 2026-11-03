@@ -58,7 +58,7 @@ The journal showed one matching Falco warning at **2026-11-01T00:50:27.015532-07
 | Effective user | root |
 | Container ID | host |
 
-The command, target path, process context and timestamp correspond to the controlled test. The original screenshot also shows the Falco output timestamp `00:50:27.015019879`, distinct from the journal's timestamp.
+The command, target path, process context and timestamp correspond to the controlled test. The operator-reported Falco output timestamp was `00:50:27.015019879`, distinct from the journal timestamp. The original terminal display is not reproduced in this repository.
 
 ## Interpretation
 
@@ -68,8 +68,8 @@ The command, target path, process context and timestamp correspond to the contro
 
 ## Evidence
 
-Operator-supplied terminal screenshots from 2026-11-01 show the controlled command, matching Falco warning and precise journal timestamp. Originals are retained outside this public repository. Sanitized screenshot binaries may be added later after reviewing host identifiers and other sensitive context.
+The controlled command, matching Falco warning, and precise journal timestamp were reviewed from operator-provided terminal output during the experiment. **No screenshot or raw journal export has been committed to this repository for Experiment 02A.** Consequently, this README is a documented observation record, not independently inspectable primary evidence. A sanitized journal excerpt or screenshot may be added later only if the original source can be retrieved and verified; it must not be recreated and represented as contemporaneous evidence.
 
 ## Next checkpoint
 
-Configure a minimally disruptive, machine-readable Falco output and verify that Wazuh receives a controlled Falco event. Compare the actual fields preserved in Falco and Wazuh before making any correlation or provenance claims.
+**Subsequently completed in Experiment 02B (2026-11-02):** Falco JSON output was collected by the Wazuh agent, received by the manager, and matched by custom rule `100700` (level 8) during a live controlled test. The alert included the Falco rule name, source file, process, and ancestry context. The corresponding raw archive and alert evidence remain local; they are not published here. This confirms SIEM ingestion and alerting, **not** a complete provenance graph. A separate, sanitized 02B evidence record remains to be published.
