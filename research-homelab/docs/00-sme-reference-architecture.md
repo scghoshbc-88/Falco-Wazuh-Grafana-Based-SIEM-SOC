@@ -6,7 +6,7 @@
 
 ## 1. Purpose and boundaries
 
-This architecture represents a plausible SME environment with heterogeneous endpoints, network infrastructure, identity services, and a small SOC function. It is a **research model**, not a diagram of an actual employer or customer network. The independent home lab currently implements only a small subset of it, as documented in [01 — Implemented Home Lab Network Architecture](01-network-architecture.md).
+This architecture represents a plausible SME environment with heterogeneous endpoints, network infrastructure, identity services, and a small SOC function. It is a **research model**, not a diagram of an actual employer or customer network. The independent home lab currently implements only a small subset of it, as documented in [01 — Implemented Home Lab Network Architecture](01-network-architecture.md) and the [current architecture map](02-home-lab-architecture-map.md).
 
 The research goal is to assess whether provenance-oriented evidence can improve security incident reconstruction relative to conventional alert and event correlation under practical constraints: limited staff, compute, storage, instrumentation coverage, and investigation time.
 
@@ -95,9 +95,9 @@ These are **candidate** sources. They are not a claim that each is installed or 
 | Windows endpoint / Sysmon | None documented in independent lab | Planned |
 | Firewall, wireless and VPN telemetry | No such feed documented in independent lab | Planned / optional |
 | Cloud identity telemetry | No cloud API feed documented in independent lab | Planned / optional |
-| Falco or audit-based provenance capture | Not yet documented as deployed in independent lab | Planned |
-| Provenance graph / causal reconstruction | No implementation or results yet | Research phase |
-| Controlled incident experiments | Protocol to be written | Planned |
+| Falco and Linux Audit instrumentation | Controlled experiments on second Ubuntu host | Implemented for documented test runs |
+| Process/file relationship reconstruction | Manually reconstructed audit-supported graph in Experiment 04 | Preliminary feasibility only; automated graph construction planned |
+| Controlled feasibility experiments | Experiments 01–04 documented | Implemented; comparative attack protocol planned |
 
 The small lab is an experimental **subset**, not a miniature enterprise whose scale or representativeness has already been established.
 
@@ -126,9 +126,9 @@ No performance or accuracy claims are made before experiments are conducted.
 
 **Phase 1 — Completed baseline:** Two Linux agents reporting to a Wazuh VM, with restricted forwarding from the second host.
 
-**Phase 2 — Next:** Capture redacted evidence, verify API authentication and transport persistence, and run a controlled Linux authentication/process activity experiment.
+**Phase 2 — Completed preliminary experiments:** Controlled authentication, Falco runtime/ingestion, and Linux Audit process/file-access experiments 01–04; see [research home lab](../README.md).
 
-**Phase 3 — Planned:** Add instrumentation capable of recording process/file/network dependencies, build reproducible evidence chains, and compare with the Wazuh-only baseline.
+**Phase 3 — In progress / planned:** Extend observed Linux process/file dependencies to network and cross-host evidence, automate reproducible graph assembly, and establish a comparable Wazuh-only investigation baseline.
 
 **Phase 4 — Planned:** Introduce controlled telemetry gaps and resource measurements, document limitations, and assess transferability to an SME setting.
 
