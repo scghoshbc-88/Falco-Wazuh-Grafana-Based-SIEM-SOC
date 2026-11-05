@@ -2,9 +2,11 @@
 
 **Research focus:** Investigating the practical value and limitations of provenance-supported intrusion investigation in resource-constrained small and medium-sized enterprise (SME) security operations.
 
-**Status (3 November 2026):** Linux-based feasibility experiments completed through Experiment 03F. Windows, Microsoft 365, cross-platform orchestration, AI-assisted scenarios, and comparative evaluations are **proposed future work**, not implemented results.
+**Status (5 November 2026):** Linux-based feasibility experiments documented through Experiment 04. Windows, Microsoft 365, cross-platform orchestration, AI-assisted scenarios, and comparative evaluations are **proposed future work**, not implemented results.
 
 > This is an independent research prototype, not a completed provenance-based intrusion detection system (PIDS), and not evidence of a new detection algorithm.
+
+**Research design and thematic review:** [Research context](research/README.md) | **Actual lab map:** [Architecture](docs/02-home-lab-architecture-map.md) | **Proposed SME environment:** [Reference architecture](docs/00-sme-reference-architecture.md).
 
 ## Research motivation
 
@@ -29,8 +31,11 @@ The earlier engineering-oriented documentation at the repository root describes 
 | [02A — Falco runtime detection](experiments/02-falco-runtime/README.md) | Falco detection of a controlled host event | Attack reconstruction |
 | [02B — Falco to Wazuh ingestion](experiments/02b-falco-wazuh-ingestion/README.md) | Falco JSON ingestion and a Wazuh custom alert | A complete causal graph |
 | [03 — Linux Audit partial provenance](experiments/03-linux-audit-provenance/README.md) | Audit-supported process and file-access relationships | Full data-flow causality or intrusion detection accuracy |
+| [04 — Process-creation and file-access reconstruction](experiments/04-process-file-provenance/README.md) | Controlled clone3/execve chain and write-mode file-open evidence | Automated PIDS or detection superiority |
 
-**Start with [Experiment 03F: sanitized publication package](experiments/03-linux-audit-provenance/publication/README.md)** for the event interpretation, parser, graph generator, DOT source, SVG figure, reproduction procedure, and limitations.
+**For the most recent evidence, see [Experiment 04](experiments/04-process-file-provenance/results.md).**
+
+**For the earlier sanitized figures, see [Experiment 03F: sanitized publication package](experiments/03-linux-audit-provenance/publication/README.md)** for the event interpretation, parser, graph generator, DOT source, SVG figure, reproduction procedure, and limitations.
 
 ![Experiment 03F: sanitized process and file-open relationships](experiments/03-linux-audit-provenance/publication/figures/provenance-03f-public.svg)
 
