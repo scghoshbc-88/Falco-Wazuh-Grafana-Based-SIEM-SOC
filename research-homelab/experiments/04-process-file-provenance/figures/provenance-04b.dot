@@ -1,0 +1,59 @@
+digraph Experiment04 {
+    graph [
+        label="Experiment 04B: Audit-backed process and file-access reconstruction"
+        labelloc=t
+        fontsize=16
+        rankdir=TB
+        bgcolor=white
+        pad=0.3
+        nodesep=0.5
+        ranksep=0.7
+    ];
+
+    node [
+        shape=box
+        style="rounded,filled"
+        fillcolor="#EAF3F2"
+        color="#367C75"
+        fontname="Helvetica"
+        fontsize=11
+    ];
+
+    parent [
+        label="Parent Python process\nPID 12988\nexecve: audit 1406"
+    ];
+
+    child [
+        label="Child Python process\nPID 12990\nexecve: audit 1409"
+    ];
+
+    grandchild [
+        label="Grandchild Python process\nPID 12995\nexecve: audit 1415"
+    ];
+
+    file [
+        label="controlled-data.txt\ninode 792350"
+        shape=note
+        fillcolor="#F1F3F5"
+        color="#667788"
+    ];
+
+    edge [
+        fontname="Helvetica"
+        fontsize=10
+        color="#536D7A"
+    ];
+
+    parent -> child [
+        label="clone3\nAudit 1408"
+    ];
+
+    child -> grandchild [
+        label="clone3\nAudit 1414"
+    ];
+
+    grandchild -> file [
+        label="openat: write-mode open\nAudit 1419"
+        style=dashed
+    ];
+}
